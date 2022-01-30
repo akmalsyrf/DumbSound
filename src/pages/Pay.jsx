@@ -8,9 +8,18 @@ import Attache from "../assets/img/attache.png";
 export default function Pay() {
   const title = "Add Payment";
   document.title = title + " | DumbSound";
+
+  const [preview, setPreview] = useState(null); //For image preview
   const [attache, setAttache] = useState(null);
+  console.log(attache);
   const handleChange = (e) => {
     setAttache(e.target.files);
+
+    // Create image url for preview
+    if (e.target.type === "file") {
+      let url = URL.createObjectURL(e.target.files[0]);
+      setPreview(url);
+    }
   };
   const [message, setMessage] = useState("");
   const handleSubmit = async (e) => {
@@ -63,6 +72,20 @@ export default function Pay() {
         <span className="text-orange">DUMB</span>SOUND : 0981312323
       </p>
       {message}
+      {preview && (
+        <div>
+          <img
+            src={preview}
+            style={{
+              maxWidth: "300px",
+              maxHeight: "300px",
+              objectFit: "cover",
+            }}
+            className="my-3"
+            alt="preview"
+          />
+        </div>
+      )}
       <Form className="w-50 offset-3" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Control type="text" placeholder="Input your account number" className="bg-input" disabled />
@@ -72,7 +95,7 @@ export default function Pay() {
             Attache proof of transfer
             <img src={Attache} alt="atc" className="ms-3" />
           </label>
-          <input type="file" id="upload" name="thumbnail" hidden onChange={handleChange} />
+          <input type="file" id="upload" name="attache" hidden onChange={handleChange} />
         </Form.Group>
         <Button type="submit" className="bg-orange w-100 mt-4 text-white">
           Send

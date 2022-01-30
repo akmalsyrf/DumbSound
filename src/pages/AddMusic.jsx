@@ -31,11 +31,25 @@ export default function AddMusic() {
     attache: "",
   });
 
+  const [previewThumbnail, setPreviewThumbnail] = useState(null);
+  const [previewAudio, setPreviewAudio] = useState(null);
+
   const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.type === "file" ? e.target.files : e.target.value,
     });
+
+    // Create image and audio url for preview
+    if (e.target.type === "file") {
+      if (e.target.files[0].type === "image/jpeg") {
+        let url = URL.createObjectURL(e.target.files[0]);
+        setPreviewThumbnail(url);
+      } else if (e.target.files[0].type === "audio/mpeg") {
+        let url = URL.createObjectURL(e.target.files[0]);
+        setPreviewAudio(url);
+      }
+    }
   };
 
   const [message, setMessage] = useState("");
@@ -76,9 +90,28 @@ export default function AddMusic() {
   };
 
   return (
-    <div className="vh-100 py-5 container">
+    <div className={`${previewThumbnail || previewAudio ? "" : "vh-100"} py-5 container`}>
       <h3 className="my-5 text-white">Add Music</h3>
       {message}
+      {previewThumbnail && (
+        <div>
+          <img
+            src={previewThumbnail}
+            style={{
+              maxWidth: "300px",
+              maxHeight: "300px",
+              objectFit: "cover",
+            }}
+            className="mb-3"
+            alt="preview"
+          />
+        </div>
+      )}
+      {previewAudio && (
+        <audio controls className="mb-3">
+          <source src={previewAudio} type="audio/mpeg" />
+        </audio>
+      )}
       <Form onSubmit={handleSubmit}>
         <div className="row">
           <Form.Group className="mb-3 col-8" controlId="exampleForm.ControlInput1">
@@ -107,7 +140,8 @@ export default function AddMusic() {
         </Form.Group>
         <Form.Group className="mb-3 col-2" controlId="exampleForm.ControlInput1">
           <label disabled htmlFor="uploadMsc" className="form-control bg-input">
-            Attache
+            Attache Music
+            <img src={Attache} alt="atc" className="ms-3" />
           </label>
           <input type="file" id="uploadMsc" name="attache" hidden onChange={handleChange} />
         </Form.Group>
