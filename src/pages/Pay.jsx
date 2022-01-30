@@ -63,7 +63,7 @@ export default function Pay() {
     }
   };
   return (
-    <div className="text-white vh-100 container text-center pt-5">
+    <div className={`${preview ? "" : "vh-100"} text-white container text-center pt-5`}>
       <h3 className="mt-5 mb-3">Premium</h3>
       <p>
         Bayar sekarang dan nikmati streaming music yang kekinian dari <span className="text-orange">DUMB</span>SOUND{" "}
