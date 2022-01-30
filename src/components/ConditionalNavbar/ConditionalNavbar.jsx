@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { NavDropdown, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import Ava from "../../assets/img/ava.png";
 import Polygon from "../../assets/img/Polygon.png";
 import LogoutIcon from "../../assets/img/logout 1.png";
 import PayIcon from "../../assets/img/bill 1.png";
@@ -20,7 +19,20 @@ export default function ConditionalNavbar(props) {
       {props.isLogin ? (
         Number(state.user.status) !== 1 ? (
           <>
-            <NavDropdown align="end" title={<img src={Ava} width="50px" height="50px" alt="ava" className="rounded-circle" style={{ border: "1px solid white" }} />} id="dropdown-menu-align-end">
+            <NavDropdown
+              align="end"
+              title={
+                <img
+                  src={`
+              https://avatars.dicebear.com/api/bottts/${state.user.fullname}.svg`}
+                  width="50px"
+                  height="50px"
+                  alt="ava"
+                  className="rounded-circle"
+                />
+              }
+              id="dropdown-menu-align-end"
+            >
               <img src={Polygon} alt="ico" className="position-absolute" style={{ top: "-20px", left: "80%", width: "30px" }} />
               <Link className="fw-bold my-2 dropdown-item" to="/pay">
                 <img src={PayIcon} className="me-2" alt="ico" /> Pay
@@ -33,7 +45,20 @@ export default function ConditionalNavbar(props) {
           </>
         ) : (
           <>
-            <NavDropdown align="end" title={<img src={Ava} width="50px" height="50px" alt="ava" className="rounded-circle" style={{ border: "1px solid white" }} />} id="dropdown-menu-align-end">
+            <NavDropdown
+              align="end"
+              title={
+                <img
+                  src={`
+              https://avatars.dicebear.com/api/bottts/${state.user.fullname}.svg`}
+                  width="50px"
+                  height="50px"
+                  alt="ava"
+                  className="rounded-circle"
+                />
+              }
+              id="dropdown-menu-align-end"
+            >
               <img src={Polygon} alt="ico" className="position-absolute" style={{ top: "-20px", left: "80%", width: "30px" }} />
               <Link className="fw-bold my-2 dropdown-item" to="/add-music">
                 <img src={Vinyl} className="me-2" alt="ico" /> Add Music
