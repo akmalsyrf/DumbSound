@@ -9,7 +9,7 @@ export default function ProofModal({ show, handleClose, proofImg }) {
           <Modal.Title>Bukti Transfer</Modal.Title>
         </Modal.Header>
         <Modal.Body className="bg-dark text-light">
-          <Image src={process.env.REACT_APP_PATH_PROOF + proofImg} alt="img" />
+          <Image src={proofImg} alt="img" />
         </Modal.Body>
         <Modal.Footer className="bg-dark text-light">
           <Button className="bg-orange" onClick={handleClose}>

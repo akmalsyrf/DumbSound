@@ -97,7 +97,7 @@ export default function Pay() {
           </label>
           <input type="file" id="upload" name="attache" hidden onChange={handleChange} />
         </Form.Group>
-        <Button type="submit" className="bg-orange w-100 mt-4 text-white">
+        <Button type="submit" className="bg-orange w-100 my-4 text-white">
           Send
         </Button>
       </Form>

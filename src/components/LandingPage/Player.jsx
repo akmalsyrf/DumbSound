@@ -7,9 +7,10 @@ export default function Player({ musics, selectedMusicIndex }) {
   const audioLists = musics.map((music) => ({
     name: music.title,
     singer: music.artist.name,
-    cover: `${process.env.REACT_APP_PATH_MUSIC + music.thumbnail}`,
-    musicSrc: `${process.env.REACT_APP_PATH_MUSIC + music.attache}`,
+    cover: music.thumbnail,
+    musicSrc: music.attache,
   }));
+
   const options = {
     playIndex: selectedMusicIndex,
     mode: "full",
@@ -19,7 +20,7 @@ export default function Player({ musics, selectedMusicIndex }) {
     remove: true,
     showPlay: true,
     showDestroy: false,
-    responsive: true,
+    responsive: false,
     defaultPosition: { bottom: 0, left: 0 },
     toggleMode: false,
     showDownload: false,
@@ -29,6 +30,7 @@ export default function Player({ musics, selectedMusicIndex }) {
     showReload: false,
     glassBg: true,
   };
+
   return (
     <>
       <ReactJkMusicPlayer {...options} />
